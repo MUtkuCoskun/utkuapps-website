@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://apps.utkuapps.com/da/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://apps.utkuapps.com/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://apps.utkuapps.com/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://apps.utkuapps.com/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://apps.utkuapps.com/fr/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://apps.utkuapps.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://apps.utkuapps.com/it/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://apps.utkuapps.com/nl/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://apps.utkuapps.com/pt/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://apps.utkuapps.com/pl/"/>
+    <xhtml:link rel="alternate" hreflang="sv" href="https://apps.utkuapps.com/sv/"/>
+    <xhtml:link rel="alternate" hreflang="da" href="https://apps.utkuapps.com/da/"/>
+    <xhtml:link rel="alternate" hreflang="no" href="https://apps.utkuapps.com/no/"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
     <loc>https://apps.utkuapps.com/da/ai-headshot/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://apps.utkuapps.com/ai-headshot/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://apps.utkuapps.com/ai-headshot/"/>
