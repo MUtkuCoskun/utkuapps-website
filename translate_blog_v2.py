@@ -190,13 +190,10 @@ def get_blog_index_html(lang, ui, cards):
 </html>'''
 
 def build_post_html(lang, meta, slug):
-    # Same as before, logic optimized for conciseness here
     ui = UI[lang]
     cat_name, cat_desc, emoji, gradient = get_category_data(slug, lang)
     
-    # Native Titles & Hreflang logic (Omitted for brevity in this variable, but included in output)
-    # Re-using previous logic essentially.
-    
+    # --- 1. TITLES ---
     title_suffix = {
         'de': 'Erfahrungsbericht & Test 2026', 'fr': 'Avis & Test 2026', 'es': 'Opiniones y Análisis 2026',
         'it': 'Recensione 2026', 'nl': 'Review 2026', 'pt': 'Avaliação 2026',
@@ -204,7 +201,43 @@ def build_post_html(lang, meta, slug):
     }
     is_guide = 'how-to' in slug
     main_title = f"{meta['name']} - {title_suffix[lang]}" 
-    if is_guide: main_title = f"Wie man {meta['name']} benutzt" if lang == 'de' else f"Guide: {meta['name']}" # Simplification for now
+    if is_guide:
+        guide_titles = {
+            'de': f"Wie man {meta['name']} benutzt", 'fr': f"Comment utiliser {meta['name']}",
+            'es': f"Cómo usar {meta['name']}", 'it': f"Come usare {meta['name']}",
+            'nl': f"Hoe {meta['name']} te gebruiken", 'pt': f"Como usar {meta['name']}",
+            'pl': f"Jak używać {meta['name']}", 'sv': f"Hur man använder {meta['name']}",
+            'da': f"Sådan bruges {meta['name']}", 'no': f"Hvordan bruke {meta['name']}"
+        }
+        main_title = guide_titles[lang]
+
+    # --- 2. HEADINGS & CONTENT ---
+    h_what = {
+        'de': f'Was ist {meta["name"]}?', 'fr': f'Qu\'est-ce que {meta["name"]} ?',
+        'es': f'¿Qué es {meta["name"]}?', 'it': f'Cos\'è {meta["name"]}?',
+        'nl': f'Wat is {meta["name"]}?', 'pt': f'O que é {meta["name"]}?',
+        'pl': f'Czym jest {meta["name"]}?', 'sv': f'Vad är {meta["name"]}?',
+        'da': f'Hvad er {meta["name"]}?', 'no': f'Hva er {meta["name"]}?'
+    }
+    
+    h_features = {
+        'de': 'Hauptfunktionen', 'fr': 'Fonctionnalités', 'es': 'Características',
+        'it': 'Caratteristiche', 'nl': 'Kenmerken', 'pt': 'Recursos',
+        'pl': 'Funkcje', 'sv': 'Funktioner', 'da': 'Funktioner', 'no': 'Funksjoner'
+    }
+
+    bullets = {
+        'de': '<li><strong>iOS:</strong> Läuft perfekt auf iPhone & iPad.</li><li><strong>UX:</strong> Einfache Bedienung.</li>',
+        'fr': '<li><strong>iOS :</strong> Fonctionne parfaitement sur iPhone et iPad.</li><li><strong>UX :</strong> Design simple et intuitif.</li>',
+        'es': '<li><strong>iOS:</strong> Funciona perfectamente en iPhone y iPad.</li><li><strong>UX:</strong> Diseño simple.</li>',
+        'it': '<li><strong>iOS:</strong> Funziona perfettamente su iPhone e iPad.</li><li><strong>UX:</strong> Design semplice.</li>',
+        'nl': '<li><strong>iOS:</strong> Werkt perfect op iPhone & iPad.</li><li><strong>UX:</strong> Eenvoudig ontwerp.</li>',
+        'pt': '<li><strong>iOS:</strong> Funciona perfeitamente no iPhone e iPad.</li><li><strong>UX:</strong> Design simples.</li>',
+        'pl': '<li><strong>iOS:</strong> Działa idealnie na iPhone i iPad.</li><li><strong>UX:</strong> Prosty design.</li>',
+        'sv': '<li><strong>iOS:</strong> Fungerar perfekt på iPhone & iPad.</li><li><strong>UX:</strong> Enkel design.</li>',
+        'da': '<li><strong>iOS:</strong> Kører perfekt på iPhone & iPad.</li><li><strong>UX:</strong> Enkelt design.</li>',
+        'no': '<li><strong>iOS:</strong> Kjører perfekt på iPhone & iPad.</li><li><strong>UX:</strong> Enkel design.</li>'
+    }
 
     intro_start = {
         'de': f'In der Welt der iOS-Apps ist <strong>{meta["name"]}</strong> eine herausragende Wahl.',
@@ -218,9 +251,6 @@ def build_post_html(lang, meta, slug):
         'da': f'I verden af iOS-apps er <strong>{meta["name"]}</strong> et fremragende valg.',
         'no': f'I verden av iOS-apper er <strong>{meta["name"]}</strong> et utmerket valg.'
     }
-    
-    # [Rest of the HTML builder logic from previous step goes here, merged for full script]
-    # For constraints, I will use the established valid HTML block from previous step.
     
     return f'''<!DOCTYPE html>
 <html lang="{lang}">
@@ -269,7 +299,7 @@ def build_post_html(lang, meta, slug):
     </header>
     <div class="article-content">
       <p class="intro-text">{intro_start[lang]} {cat_desc}</p>
-      <h2>Was ist {meta['name']}?</h2>
+      <h2>{h_what[lang]}</h2>
       <p>{cat_desc}</p>
       <div class="app-card">
         <img src="../../../icons/{meta['icon']}" alt="{meta['name']}" onerror="this.src='../../../icons/default.png'">
@@ -277,8 +307,8 @@ def build_post_html(lang, meta, slug):
         <p>⭐️⭐️⭐️⭐️⭐️ {ui['rated']}</p>
         <a href="{meta['link']}" class="download-btn">{ui['download']}</a>
       </div>
-      <h2>Features</h2>
-      <ul><li><strong>iOS:</strong> Runs perfectly.</li><li><strong>UX:</strong> Simple design.</li></ul>
+      <h2>{h_features[lang]}</h2>
+      <ul>{bullets[lang]}</ul>
     </div>
   </article>
   <footer class="footer"><div class="container"><p>&copy; 2026 TechSolutionAI. {ui['rights']}</p></div></footer>
