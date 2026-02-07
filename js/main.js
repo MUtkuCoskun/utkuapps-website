@@ -23,3 +23,17 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+// Image lazy load with fade-in effect
+document.addEventListener('DOMContentLoaded', function() {
+  const images = document.querySelectorAll('.app-icon img');
+  images.forEach(img => {
+    if (img.complete) {
+      img.classList.add('loaded');
+    } else {
+      img.addEventListener('load', function() {
+        this.classList.add('loaded');
+      });
+    }
+  });
+});

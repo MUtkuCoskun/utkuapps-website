@@ -1187,3 +1187,24 @@ h4 {
 .cta-pulse {
   animation: pulse 2s infinite;
 }
+
+/* Skeleton Loading for App Icons */
+.app-card .app-icon {
+  background: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+@keyframes skeleton-loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.app-card .app-icon img {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.app-card .app-icon img.loaded {
+  opacity: 1;
+}
